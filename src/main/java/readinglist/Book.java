@@ -17,6 +17,7 @@ public class Book {
     private String isbn;
     private String title;
     private String author;
+    private String url;
     private String description;
 
     public long getId() {
@@ -65,5 +66,13 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

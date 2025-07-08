@@ -1,4 +1,4 @@
-<html>
+<html xmlns:https="http://www.w3.org/1999/xhtml">
 <head>
     <title>Reading List</title>
     <link rel="stylesheet" th:href="@{/styles.css}" />
@@ -54,6 +54,13 @@
         border: 1px solid #ccc;
         border-radius: 4px;
     }
+    input[type="url"], textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
 
     input[type="submit"] {
         margin-top: 15px;
@@ -81,11 +88,22 @@
                 Spring Boot in Action
             </a>
         </li>
+        <li>
+            <a href="https://www.amazon.com/Spring-Microservices-Action-John-Carnell/dp/1617293989" target="_blank">
+                Spring Microservices in Action
+            </a>
+        </li>
+        <li>
+            <a href="https://www.amazon.com/Spring-Security-Action-Second-Laurentiu-ebook/dp/B0CZK4PMJM/ref=sr_1_1?adgrpid=158260585160&dib=eyJ2IjoiMSJ9.vGmkJ1CiWbUkY5Jf-qHIMsE2kkDepRQHaL_MsXURAAyxjPCPcIKnOaFwCQFP9vFosFZFXmxph8-kWoDZjBJN9TURNY9Zpq-hOxeRoTnmzvzjBEIlsN3ueJ3zbGWxRKOwy51Vm58Seahb-SjHh1AgSLiRt1dJbXD_CoBwiL2YGOWNN9fXxTZYMSVP7Z2tGlSiNezux8Jnw7YVpIxBlLEuMuFUdwQfsgoywSOkS_JgJCo.PLSWNeDxFaZ0kVGYFgBmJib3oQqCBnc6Yax8NXubO0s&dib_tag=se&hvadid=681431241482&hvdev=c&hvlocphy=1009985&hvnetw=g&hvqmt=e&hvrand=6301772253668866248&hvtargid=kwd-1041043183373&hydadcr=17858_13648582&keywords=spring+security+in+action&mcid=65947df45e933b29ac79c1a24590afc0&qid=1751987200&sr=8-1" target="_blank">
+            Spring Security in Action
+            </a>
+        </li>
 
         <li th:each="book : ${books}">
-            <a th:href="'http://www.amazon.com/gp/product/' + ${book.isbn} + '/tag=habuma-20'"
+            <a th:href="${book.url}"
                th:text="${book.title}">Title</a>
         </li>
+
     </ul>
 </div>
 
@@ -95,22 +113,25 @@
 
 <hr/>
 <h3>Add a book</h3>
-<form method="POST" th:action="@{'/' + ${reader}}">
+<form method="POST" th:action="@{'/' + ${reader}}" th:object="${book}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title" size="50"><br/>
+    <input type="text" id="title" th:field="*{title}" /><br/>
 
     <label for="author">Author:</label>
-    <input type="text" id="author" name="author" size="50"><br/>
+    <input type="text" id="author" th:field="*{author}" /><br/>
 
     <label for="isbn">ISBN:</label>
-    <input type="text" id="isbn" name="isbn" size="15"><br/>
+    <input type="text" id="isbn" th:field="*{isbn}" /><br/>
+
+    <label for="url">Link:</label>
+    <input type="url" id="url" th:field="*{url}" /><br/>
 
     <label for="description">Description:</label><br/>
-    <textarea id="description" name="description" cols="80" rows="5"></textarea><br/>
+    <textarea id="description" th:field="*{description}" cols="80" rows="5"></textarea><br/>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" />
 </form>
 
 </body>

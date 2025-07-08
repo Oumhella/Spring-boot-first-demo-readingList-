@@ -33,6 +33,7 @@ public class ReadingListController {
         if (readingList != null) {
             model.addAttribute("books", readingList);
         }
+        model.addAttribute("book", new Book());
         model.addAttribute("reader", reader);
         return "readingList";
     }
