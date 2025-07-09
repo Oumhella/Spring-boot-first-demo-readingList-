@@ -28,7 +28,6 @@ public class ReadingListController {
         return "redirect:/" + username;
     }
 
-
     @RequestMapping(value="/{reader}", method=RequestMethod.GET)
     public String readersBooks(
             @PathVariable("reader") String reader,

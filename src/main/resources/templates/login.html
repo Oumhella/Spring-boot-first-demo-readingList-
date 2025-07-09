@@ -55,6 +55,10 @@
     </style>
 </head>
 <body>
+<div th:if="${param.logout}">
+    <p>You have been logged out successfully.</p>
+</div>
+
 <h2>Login</h2>
 <form th:action="@{/login}" method="post">
     <div><label>Username: <input type="text" name="username" /></label></div>
