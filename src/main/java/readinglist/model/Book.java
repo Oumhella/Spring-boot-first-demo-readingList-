@@ -1,4 +1,4 @@
-package readinglist;
+package readinglist.model;
 
 import jakarta.persistence.Entity;
 
